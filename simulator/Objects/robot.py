@@ -4,9 +4,9 @@
 import time, os, math
 import traceback
 
-from PyQt5.QtWidgets import QGraphicsItemGroup, QGraphicsPixmapItem, QGraphicsRectItem
-from PyQt5.QtGui import QPixmap, QColor, QPainter, QIcon
-from PyQt5.QtCore import QPointF
+from PyQt6.QtWidgets import QGraphicsItemGroup, QGraphicsPixmapItem, QGraphicsRectItem
+from PyQt6.QtGui import QPixmap, QColor, QPainter, QIcon
+from PyQt6.QtCore import QPointF, Qt
 
 from physics import physics
 from bullet import Bullet
@@ -221,7 +221,7 @@ class Robot(QGraphicsItemGroup):
 
 
             #collisions
-            for item in set(self.__base.collidingItems(1)) - self.__items:
+            for item in set(self.__base.collidingItems(Qt.ItemSelectionMode.IntersectsItemShape)) - self.__items:
                 if isinstance(item, QGraphicsRectItem):
                     #wall Collision
                     self.__wallRebound(item)
@@ -256,7 +256,7 @@ class Robot(QGraphicsItemGroup):
 
     def setGunColor(self, r, g, b):
         color = QColor(r, g, b)
-        mask = self.__gun.pixmap.createMaskFromColor(self.gunMaskColor,  1)
+        mask = self.__gun.pixmap.createMaskFromColor(self.gunMaskColor,  Qt.MaskMode.MaskOutColor)
         p = QPainter(self.__gun.pixmap)
         p.setPen(QColor(r, g, b))
         p.drawPixmap(self.__gun.pixmap.rect(), mask, mask.rect())
@@ -290,7 +290,7 @@ class Robot(QGraphicsItemGroup):
 
     def setColor(self, r, g, b):
         color = QColor(r, g, b)
-        mask = self.__base.pixmap.createMaskFromColor(self.maskColor,  1)
+        mask = self.__base.pixmap.createMaskFromColor(self.maskColor,  Qt.MaskMode.MaskOutColor)
         p = QPainter(self.__base.pixmap)
         p.setPen(QColor(r, g, b))
         p.drawPixmap(self.__base.pixmap.rect(), mask, mask.rect())
@@ -339,7 +339,7 @@ class Robot(QGraphicsItemGroup):
 
     def setRadarColor(self, r, g, b):
         color = QColor(r, g, b)
-        mask = self.__radar.pixmap.createMaskFromColor(self.radarMaskColor,  1)
+        mask = self.__radar.pixmap.createMaskFromColor(self.radarMaskColor,  Qt.MaskMode.MaskOutColor)
         p = QPainter(self.__radar.pixmap)
         p.setPen(QColor(r, g, b))
         p.drawPixmap(self.__radar.pixmap.rect(), mask, mask.rect())

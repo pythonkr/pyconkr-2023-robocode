@@ -3,9 +3,9 @@
 import sys
 import time, os, random
 
-from PyQt5.QtWidgets import QGraphicsScene, QMessageBox, QGraphicsRectItem
-from PyQt5.QtGui import QPixmap, QColor, QBrush
-from PyQt5.QtCore import QPointF, QRectF
+from PyQt6.QtWidgets import QGraphicsScene, QMessageBox, QGraphicsRectItem
+from PyQt6.QtGui import QPixmap, QColor, QBrush
+from PyQt6.QtCore import QPointF, QRectF, Qt
 
 from robot import Robot
 from outPrint import outPrint
@@ -83,7 +83,7 @@ class Graph(QGraphicsScene):
         brush = QBrush()
         pix = QPixmap(os.getcwd() + "/robotImages/tile.png")
         brush.setTexture(pix)
-        brush.setStyle(24)
+        brush.setStyle(Qt.BrushStyle.TexturePattern)
         self.setBackgroundBrush(brush)
         
         #wall
@@ -92,7 +92,7 @@ class Graph(QGraphicsScene):
         pix = QPixmap(os.getcwd() + "/robotImages/tileVert.png")
         left.setRect(QRectF(0, 0, pix.width(), self.height))
         brush.setTexture(pix)
-        brush.setStyle(24)
+        brush.setStyle(Qt.BrushStyle.TexturePattern)
         left.setBrush(brush)
         left.name = 'left'
         self.addItem(left)
@@ -107,7 +107,7 @@ class Graph(QGraphicsScene):
         pix = QPixmap(os.getcwd() + "/robotImages/tileHori.png")
         top.setRect(QRectF(0, 0, self.width, pix.height()))
         brush.setTexture(pix)
-        brush.setStyle(24)
+        brush.setStyle(Qt.BrushStyle.TexturePattern)
         top.setBrush(brush)
         top.name = 'top'
         self.addItem(top)

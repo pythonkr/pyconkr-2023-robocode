@@ -7,8 +7,8 @@ Module implementing MainWindow.
 import os,  pickle
 import sys
 
-from PyQt5.QtWidgets import QMainWindow, QGraphicsScene, QHeaderView, QTableWidgetItem
-from PyQt5.QtCore import pyqtSlot, QTimer
+from PyQt6.QtWidgets import QMainWindow, QGraphicsScene, QHeaderView, QTableWidgetItem
+from PyQt6.QtCore import pyqtSlot, QTimer
 
 from graph import Graph
 from Ui_window import Ui_MainWindow
@@ -32,7 +32,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.cli_input = cli_input
         self.countBattle = 0
         self.timer = QTimer()
-        self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         self.tableWidget.hide()
         self.scene = None
 

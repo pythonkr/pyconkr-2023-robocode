@@ -11,7 +11,7 @@ sys.path.append(os.getcwd() + "/Robots")
 from window import MainWindow
 from robot import Robot
 
-from PyQt5.QtWidgets import QApplication
+from PyQt6.QtWidgets import QApplication
 
 if __name__ == "__main__":
     cli_input = False
@@ -92,4 +92,4 @@ if __name__ == "__main__":
     else:
         myapp = MainWindow(allowCommentator=commentator)
         myapp.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
